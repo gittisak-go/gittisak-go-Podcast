@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Podcast — รายการ</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./episodes.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Podcast</a>
+    <ul>
+      <li><a href="./parallax.html">หน้าแรก</a></li>
+      <li><a href="./podcast.html" class="active">Podcast</a></li>
+    </ul>
+  </header>
+
+  <main style="padding:120px 40px 60px;">
+    <h1>รายการพอดแคสต์</h1>
+    <p>รายการทดสอบ — หน้าแยกสำหรับแสดงตอนและเล่นไฟล์ .m4a จาก repository</p>
+
+    <div class="episode-list">
+      <article class="episode-card">
+        <div class="episode-placeholder" role="button" tabindex="0" data-src="../src/m4a/เลิกเปรียบเทียบชีวิตตัวเองกับสิ่งที่เห็นในโชเชียลมีเดีย.m4a">
+          <div class="poster">
+            <div class="play-icon">▶</div>
+            <div class="meta">
+              <strong>EP.7</strong>
+              <div class="title">เลิกเปรียบเทียบชีวิตตัวเองกับสิ่งที่เห็นในโชเชียลมีเดีย</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script src="./player.js" defer></script>
+</body>
+</html>

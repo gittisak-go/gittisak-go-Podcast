@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Parallax — Demo Landing</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./episodes.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Podcast</a>
+    <ul>
+      <li><a href="./parallax.html" class="active">หน้าแรก</a></li>
+      <li><a href="./podcast.html">Podcast</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </header>
+
+  <section id="hero">
+    <img src="http://codingstella.com/wp-content/uploads/2024/01/download-4.png" id="stars" data-parallax data-parallax-speed="0.06" alt="stars">
+    <img src="http://codingstella.com/wp-content/uploads/2024/01/download-5.png" id="moon" data-parallax data-parallax-speed="0.10" alt="moon">
+    <img src="http://codingstella.com/wp-content/uploads/2024/01/download-6.png" id="mountains_behind" data-parallax data-parallax-speed="0.04" alt="mountains">
+    <h2 id="text" data-parallax data-parallax-speed="0.12">โปรเจกต์ Parallax</h2>
+    <a href="./podcast.html" id="btn">ไปที่ Podcast</a>
+    <img src="http://codingstella.com/wp-content/uploads/2024/01/download-7.png" id="mountains_front" alt="front">
+  </section>
+
+  <div class="sec" id="sec">
+    <h2>ตัวอย่าง Parallax แบบเบา</h2>
+    <p>หน้านี้เป็นหน้าเดโม — ใช้ JS-driven parallax ที่เคารพ prefers-reduced-motion และปิดบนมือถือ</p>
+
+    <section style="margin-top:2rem;">
+      <h3>ตัวอย่างเพลง (ทดสอบ local .m4a)</h3>
+      <div class="episode-list">
+        <div class="episode-card">
+          <div class="episode-placeholder" role="button" tabindex="0" data-src="../src/m4a/เลิกเปรียบเทียบชีวิตตัวเองกับสิ่งที่เห็นในโชเชียลมีเดีย.m4a">
+            <div class="poster">
+              <div class="play-icon">▶</div>
+              <div class="meta">
+                <strong>EP.7</strong>
+                <div class="title">เลิกเปรียบเทียบชีวิตตัวเองกับสิ่งที่เห็นในโชเชียลมีเดีย</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./parallax.js" defer></script>
+  <script src="./player.js" defer></script>
+</body>
+</html>

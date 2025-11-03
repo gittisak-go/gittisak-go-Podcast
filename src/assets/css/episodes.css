@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+:root {
+  --bg:#0b0f14;
+  --accent1:#ff3b30;
+  --accent2:#ff9500;
+  --accent3:#34c759;
+  --accent4:#5e5ce6;
+}
+
+/* Episode card utility classes */
+.episode-card { display: flex; flex-direction: column; }
+.episode-media { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); display: grid; place-items: center; }
+.episode-media .play-button { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.episode-media .play-button svg { width:44px; height:44px; opacity:0.95 }
+.episode-media .poster { width:100%; height:0; padding-bottom:56.25%; background-size:cover; background-position:center; }
+.episode-card p { margin-top:0.75rem }
+
+/* Parallax / Album-like section styles (used by special.html) */
+.parallax-section { background: linear-gradient(180deg, rgba(10,12,14,0.6), rgba(6,8,10,0.7)); }
+.parallax-section .parallax-inner { display:block; }
+.parallax-section .album-cover { display:flex; align-items:center; justify-content:center; }
+.parallax-section .album-cover .episode-media { border-radius:8px; }
+.parallax-section .track-list button { background: transparent; border: 1px solid rgba(255,255,255,0.05); color: inherit; }
+
+@media (min-width:768px) {
+  /* Disabled heavy CSS `background-attachment: fixed` for better mobile/paint performance.
+     We use a small JS-driven transform-based parallax (translate3d) on elements marked with
+     the `data-parallax` attribute. This is more GPU-friendly and easier to throttle.
+  */
+  /* .parallax-section { background-attachment: fixed; } */
+}
+
+/* Elements that should participate in JS-driven parallax should have `data-parallax`.
+   Keep transforms GPU-accelerated and hint the browser about upcoming changes. */
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0,0,0);
+}
+
+/* Small visual polish for album text */
+.parallax-section h3 { color: var(--accent4); }
+.parallax-section h4 { color: var(--accent3); }

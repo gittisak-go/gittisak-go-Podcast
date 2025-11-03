@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Parallax Scrolling Effects — gittisak go Podcast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root{ --bg:#0b0f14; --accent3:#34c759; --accent4:#5e5ce6; }
+        body { background: linear-gradient(180deg,#07090b 0%,var(--bg) 100%); color:#e6eef6; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    </style>
+    <link rel="stylesheet" href="../src/assets/css/episodes.css">
+</head>
+<body class="min-h-screen flex flex-col items-center p-0">
+    <header class="w-full bg-[#0b0f14]/90 backdrop-blur sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+            <h1 class="text-lg md:text-xl font-bold text-white">🎙️ gittisak go Podcast</h1>
+            <nav class="hidden sm:flex gap-4 text-sm">
+                <a href="../src/pages/about.html" class="text-slate-300 hover:text-white">เกี่ยวกับ</a>
+                <a href="../src/pages/episodes.html" class="text-slate-300 hover:text-white">ทุกตอน</a>
+                <a href="../src/pages/contact.html" class="text-slate-300 hover:text-white">ติดต่อ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main hero: Parallax Scrolling Effects (no lorem ipsum) -->
+    <main class="w-full max-w-6xl px-4 md:px-6 mt-12">
+        <section class="text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[--accent4]">Parallax Scrolling Effects</h2>
+            <p class="text-slate-300 mt-3 text-base md:text-lg max-w-3xl mx-auto">หน้าแสดงตัวอย่างเอฟเฟกต์ Parallax — ดึงเนื้อหาจากหน้า "Special" เพื่อเป็นหน้าต้อนรับแบบโฟลว์</p>
+        </section>
+
+        <!-- Parallax / Album-like section (copied from special.html but paths adjusted for dist/) -->
+        <section id="parallax" class="w-full mt-12">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="parallax-section rounded-2xl overflow-hidden shadow-lg">
+                    <div class="parallax-inner grid grid-cols-1 md:grid-cols-3 gap-6 items-start p-6">
+                        <!-- Cover / player column -->
+                        <div class="md:col-span-1 flex flex-col items-center gap-4">
+                            <div class="album-cover w-full max-w-sm rounded-lg overflow-hidden bg-gradient-to-b from-black/30 to-black/60">
+                                <div class="episode-media" role="button" tabindex="0" data-src="../src/m4a/เลิกเปรียบเทียบชีวิตตัวเองกับสิ่งที่เห็นในโชเชียลมีเดีย.m4a" aria-label="เล่น EP.7" data-parallax data-parallax-speed="0.12" style="min-height:260px;">
+                                    <div class="poster" style="background-image: linear-gradient(180deg, rgba(94,92,230,0.2), rgba(255,59,48,0.08)); height:100%;"></div>
+                                    <div class="play-button" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" class="w-12 h-12"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="mt-2 px-5 py-2 rounded-lg bg-[--accent4] text-white font-semibold hover:brightness-105" onclick="document.querySelector('#parallax .episode-media').click()">
+                                ▶ เล่นตัวอย่าง (ทดลอง)
+                            </button>
+                        </div>
+
+                        <!-- Meta / tracklist column -->
+                        <div class="md:col-span-2 text-left">
+                            <h3 class="text-2xl font-extrabold text-white">ชีวิตสั้น จงยิ้ม — Special Collection</h3>
+                            <p class="text-slate-300 mt-2">คัดสรรตอนเด่นจากรายการ gittisak go — รวมบทสนทนาเบื้องหลังเทคโนโลยี MCP, เคสศึกษา, และเครื่องมือที่ทีมใช้ในการพัฒนา AI Agent</p>
+
+                            <div class="mt-4 bg-white/3 p-4 rounded-lg">
+                                <h4 class="font-semibold text-[--accent3]">เพลง/ตอนในอัลบั้ม</h4>
+                                <ol class="track-list mt-3 space-y-2 text-sm text-slate-200">
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.1 — จุดเริ่มต้น</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://open.spotify.com/embed/episode/EXAMPLE_SPOTIFY_EP_1')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.2 — แผนแม่บท MCP</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://open.spotify.com/embed/episode/EXAMPLE_SPOTIFY_EP_2')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.3 — ยุทธศาสตร์การขยายตัว</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://open.spotify.com/embed/episode/EXAMPLE_SPOTIFY_EP_3')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.4 — ส่วนเสริมเชิงผู้เชี่ยวชาญ</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://open.spotify.com/embed/episode/EXAMPLE_SPOTIFY_EP_4')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.5 — แนะนำพอดแคสต์</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://open.spotify.com/embed/episode/EXAMPLE_SPOTIFY_EP_5')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.6 — เครื่องมือเปลี่ยนชีวิตนักพัฒนา</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="playUrl('https://www.youtube.com/embed/EXAMPLE_YT_ID')">▶ เล่น</button>
+                                    </li>
+                                    <li class="flex items-center justify-between">
+                                        <div>EP.7 — เลิกเปรียบเทียบ (ไฟล์ท้องถิ่น)</div>
+                                        <button class="px-3 py-1 rounded bg-white/10" onclick="document.querySelector('#parallax .episode-media').click()">▶ เล่น</button>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <p class="text-slate-400 text-xs mt-3">หมายเหตุ: ลิงก์ตัวอย่างเป็นตัวอย่าง placeholder — ถ้าคุณมี URL หรือไฟล์จริง ให้ส่งมาได้เลย ฉันาจะแทนที่ให้ครบทั้งหน้า</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-16 mb-6 text-xs text-slate-500 text-center w-full">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-slate-500">© 2025 gittisak go</div>
+        </div>
+    </footer>
+
+    <script>
+    // Small helper to play a given embed URL or audio file inside the Parallax section
+    function playUrl(url) {
+        const containerId = 'parallax-player';
+        let container = document.getElementById(containerId);
+        if (!container) {
+            const par = document.querySelector('#parallax .parallax-inner .md\\:col-span-2') || document.querySelector('#parallax');
+            container = document.createElement('div');
+            container.id = containerId;
+            container.className = 'mt-4';
+            if (par) par.prepend(container);
+        }
+        const audioRE = /\.(m4a|mp3|wav|ogg)(\?.*)?$/i;
+        container.innerHTML = '';
+        if (audioRE.test(url) || /\/m4a\//i.test(url)) {
+            const a = document.createElement('audio');
+            a.controls = true; a.preload = 'none'; a.src = url; a.style.width = '100%'; a.style.borderRadius = '12px';
+            container.appendChild(a);
+            a.play().catch(()=>{});
+        } else {
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.loading = 'lazy';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.width = '100%'; iframe.style.aspectRatio = '16/9'; iframe.style.border = '0'; iframe.style.borderRadius = '12px';
+            container.appendChild(iframe);
+        }
+        container.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+    </script>
+
+    <script src="../src/assets/js/player.js" defer></script>
+    <script src="../src/assets/js/parallax.js" defer></script>
+</body>
+</html>

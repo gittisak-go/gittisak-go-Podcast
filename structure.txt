@@ -1,0 +1,20 @@
+gittisak-go-Podcast/
+├── README.md
+├── index.html
+├── gittisak go w.png
+├── /public
+│   ├── favicon.ico
+│   └── manifest.json
+├── /src
+│   ├── /assets
+│   │   └── (ถ้ามีภาพอื่น เช่น cover.jpg, banner.png)
+│   ├── /components
+│   │   └── player.js          # ตัวเล่นเสียง (เพิ่มภายหลังได้)
+│   ├── /pages
+│   │   ├── about.html         # หน้าเกี่ยวกับ (เพิ่มภายหลัง)
+│   │   ├── episodes.html      # หน้าแสดงตอน (เพิ่มภายหลัง)
+│   │   └── contact.html       # หน้า “ติดต่อเรา”
+│   └── /styles
+│       └── main.css           # เฉพาะถ้ามี custom CSS เพิ่มเติม
+├── package.json               # เฉพาะถ้าจะใช้ระบบ build (Next.js/Vite)
+└── tailwind.config.js         # ถ้าใช้ Tailwind local (ตอนนี้ใช้ CDN ได้เลย)
