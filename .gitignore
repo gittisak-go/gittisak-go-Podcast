@@ -1,0 +1,30 @@
+# Ignore private keys and secrets
+# Never commit private SSH keys, certificates, or tokens
+.ssh/
+*.pem
+*.key
+*.ppk
+.env
+.env.*
+
+# Node / build
+node_modules/
+dist/
+build/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Parcel/Vite
+.cache/
+
+# Ensure we don't accidentally commit large audio files if in repo root
+*.mp3
+*.m4a
