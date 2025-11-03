@@ -1,0 +1,87 @@
+name: CI — create branch, push changes, open PR
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.name "CI Bot"
+          git config user.email "ci-bot@example.com"
+
+      - name: Make changes (example)
+        id: changes
+        run: |
+          timestamp="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          echo "CI updated at $timestamp" >> ci-updates.txt
+          git add ci-updates.txt
+          if git diff --staged --quiet; then
+            echo "no_changes=true" >> $GITHUB_OUTPUT
+          else
+            git commit -m "ci: update ci-updates.txt ($timestamp)"
+            echo "no_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if no changes
+        if: steps.changes.outputs.no_changes == 'true'
+        run: echo "No changes to commit. Exiting."
+
+      - name: Create branch and push using PAT
+        if: steps.changes.outputs.no_changes == 'false'
+        env:
+          CI_PAT: ${{ secrets.CI_PAT }}
+          REPO: ${{ github.repository }}
+          BASE_BRANCH: main
+        run: |
+          BRANCH="ci/update-$(date -u +%Y%m%d%H%M%S)"
+          git fetch origin $BASE_BRANCH
+          git checkout -b "$BRANCH"
+          remote_url="https://x-access-token:${CI_PAT}@github.com/${REPO}.git"
+          git remote set-url origin "$remote_url"
+          git push -u origin "$BRANCH"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Create or update Pull Request
+        if: steps.changes.outputs.no_changes == 'false'
+        env:
+          CI_PAT: ${{ secrets.CI_PAT }}
+          REPO: ${{ github.repository }}
+          BASE_BRANCH: main
+        run: |
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          if command -v gh >/dev/null 2>&1; then
+            echo "$CI_PAT" | gh auth login --with-token
+            existing_pr=$(gh pr list --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[0].number // ""')
+            if [ -n "$existing_pr" ]; then
+              echo "Existing PR found: #$existing_pr"
+            else
+              gh pr create --base "$BASE_BRANCH" --head "$BRANCH" --title "ci: update from workflow" --body "This PR was opened automatically by CI to apply generated changes."
+            fi
+          else
+            api_url="https://api.github.com/repos/${REPO}/pulls"
+            payload=$(jq -n --arg title "ci: update from workflow" --arg head "$BRANCH" --arg base "$BASE_BRANCH" --arg body "This PR was opened automatically by CI to apply generated changes." '{title:$title, head:$head, base:$base, body:$body}')
+            resp=$(curl -s -X POST -H "Authorization: token ${CI_PAT}" -H "Accept: application/vnd.github+json" "$api_url" -d "$payload")
+            pr_number=$(echo "$resp" | jq -r .number // empty)
+            if [ -n "$pr_number" ] && [ "$pr_number" != "null" ]; then
+              echo "Created PR #$pr_number"
+            else
+              echo "Could not create PR. Response:"
+              echo "$resp"
+              exit 1
+            fi
+          fi
